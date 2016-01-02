@@ -1,0 +1,34 @@
+import java.sql.*;
+public class CreateDemo {
+	public static void main(String[] args)
+	{
+		Connection con=null;
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
+			con = DriverManager.getConnection
+			("jdbc:oracle:thin:@localhost:1512:xe","aaa","user123");
+			if(!con.isClosed())
+			{
+				System.out.println("successfully connected");
+				String cs = 
+		"Create Table EMP(EmpID Number(10),EmpName varchar(20),EmpSal Number(10))";
+				Statement st = con.createStatement();
+				st.execute(cs);
+				st.close();
+				con.close();
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+	}
+
+}
+
+
+
+
+

@@ -1,0 +1,42 @@
+import java.sql.*;
+public class CreateDemo {
+	public static void main(String[] args)
+	{
+		Connection con=null;
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","aaa","user123");
+			if(!con.isClosed())
+			{
+				System.out.println("successfully connected");
+				Statement st = con.createStatement();
+				/*String cs = "Create Table EMP(EmpID Number(10),EmpName varchar(20),EmpSal Number(10))";
+				st.execute(cs);*/
+				
+				String cs = "Insert into Emp Values(1,'Rushil',12000)";
+				st.executeUpdate(cs);
+				
+				cs = "Insert into Emp Values(2,'Shobha',22000)";
+				st.executeUpdate(cs);
+				
+				cs = "Insert into Emp Values(3,'kanth'32000)";
+				st.executeUpdate(cs);
+				
+				st.close();
+				con.close();
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+	}
+
+}
+
+
+
+
+

@@ -1,0 +1,12 @@
+
+public class Demo1 {
+	public static void main(String[] args) {
+		Thread mt = Thread.currentThread();
+		System.out.println(mt.getName()+" "+mt.getPriority());
+		mt.setName("MainThread");
+		mt.setPriority(8);
+		System.out.println(mt.getName()+" "+mt.getPriority());
+		
+	}
+
+}
