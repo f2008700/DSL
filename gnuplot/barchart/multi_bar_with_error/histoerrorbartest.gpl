@@ -1,15 +1,20 @@
 reset
 fontsize = 12
 set term postscript enhanced eps fontsize
-set output "bar.eps"
+set output "histoerrorbartest.eps"
+set boxwidth 0.9
 set style fill solid 1.00 border 0
 set style histogram errorbars gap 2 lw 1
-set style data histogram
+set style data histograms
 set xtics rotate by -45
-set grid ytics
-set xlabel "Benchmarks"
-set ylabel "Relative execution time vs. reference implementation"
-set yrange [0:*]
+set bars 0.5
+set yrange [ 0.00000 : 10/3*fontsize + 85 ]
 set datafile separator ","
-plot 'histoerrorbartest.dat' using 2:3:xtic(1) ti "Rapydo" linecolor rgb "#FF0000", \
-'' using 4:5 ti "R reference implementation" lt 1 lc rgb "#00FF00"
+plot 'histoerrorbartest.dat' using 2:3:4:xtic(1) ti "Subsampling (every 512th packet)" linecolor rgb "#555555", \
+	'' using 5:6:7 ti "Bloom filter without reset" lt 1 lc rgb "#777777", \
+	'' using 8:9:10 ti "Bloom filter with periodic reset" lt 1 lc rgb "#999999", \
+	'' using 11:12:13 ti "coreB" lt 1 lc rgb "#BBBBBB", \
+	'' using 14:15:16 ti "coreB+" lt 1 lc rgb "#DDDDDD", \
+	'' using 17:18:19 ti "coreB Twist" lt 1 lc rgb "#FFFFFF", \
+	100 with lines lt 1 lc rgb "black" notitle
+
