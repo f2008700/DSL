@@ -1,0 +1,5 @@
+gnuplot graph_throughput.plt
+convert ThroughputValues_points_mapping.eps ThroughputValues_points_mapping.png
+convert ThroughputValues_points_mapping.png -rotate 90 ThroughputValues_points_mapping1.png
+mv  ThroughputValues_points_mapping1.png ThroughputValues_points_mapping.png
+convert ThroughputValues_points_mapping.png ThroughputValues_points_mapping.pdf
